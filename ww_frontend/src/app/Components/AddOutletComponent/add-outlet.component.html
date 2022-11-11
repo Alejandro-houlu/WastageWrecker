@@ -1,0 +1,148 @@
+
+
+<nav class="md:left-0 md:block md:fixed md:top-0 md:bottom-0 md:overflow-y-auto md:flex-row md:flex-nowrap md:overflow-hidden shadow-xl bg-white flex 
+    flex-wrap items-center justify-between relative md:w-64 z-10 py-4 px-6">
+  <div class="md:flex-col md:items-stretch md:min-h-full md:flex-nowrap px-0 flex flex-wrap items-center justify-between w-full mx-auto">
+
+    <a class="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
+      href="javascript:void(0)">
+      Wastage Wrecker
+    </a>
+    <div class="md:flex md:flex-col md:items-stretch md:opacity-100 md:relative md:mt-4 md:shadow-none shadow absolute top-0 left-0 right-0 z-40 
+        overflow-y-auto overflow-x-hidden h-auto items-center flex-1 rounded">
+      <ul class="md:flex-col md:min-w-full flex flex-col list-none">
+        <li class="items-center">
+          <a class="text-blueGray-700 hover:text-pink-600 text-xs uppercase py-3 font-bold block"
+            [routerLink]="['/profile', user.userId]">
+            <i class="fas fa-tv opacity-75 mr-2 text-sm"></i>
+            Dashboard</a>
+        </li>
+        <li class="items-center">
+          <a class="text-pink-500 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
+            [routerLink]="['/outlet']">
+            <i class="fas fa-shop text-blueGray-400 mr-2 text-sm"></i>
+            Outlets</a>
+        </li>
+        <li class="items-center">
+          <a class="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
+            href="#/profile">
+            <i class="fas fa-tags text-blueGray-400 mr-2 text-sm"></i>
+            Promotions</a>
+        </li>
+        <li class="items-center">
+          <a class="text-blueGray-300 text-xs uppercase py-3 font-bold block"
+            href="javascript:void(0)">
+            <i class="fas fa-tools text-blueGray-300 mr-2 text-sm"></i>
+            Settings (soon)</a>
+        </li>
+      </ul>
+      <hr class="my-4 md:min-w-full" />
+    </div>
+  </div>
+</nav>
+<div class="relative md:ml-64 bg-blueGray-100">
+  <app-navbar></app-navbar>
+    <div class="relative bg-orange-500 md:pt-24 pb-20 pt-12">
+        <div class="px-4 md:px-100 mx-auto w-full">
+            <div>
+        <!-- Add outlet form -->
+<div class="flex flex-wrap">
+    <div class="container relative mx-auto">
+        <div class="items-center flex flex-wrap">
+          <div class="w-full lg:w-3/12 px-4 ml-auto mr-auto text-center">
+            <div class="pr-12">
+              <img src="/assets/images/logo-no-background.png"/>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+        </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<!-- List of outlets -->
+<div class="relative md:ml-64 pt-12 pl-4 pb-32" style="width: 80%; margin-right: 100px;">
+    <form [formGroup]="addOutletForm" (ngSubmit)="processAddOutletForm()" style="width: 100%; margin:auto;">
+
+    <mat-form-field appearance="fill" hintLabel="Max 100 characters" style="width: 100%;">
+        <mat-label>Store Name</mat-label>
+        <!-- <input type="text" #storeName name="storeName" id="storeName" placeholder="Ex. KFC Plaza Singapura" maxlength="100" matInput formControlName="storeName"> -->
+        <input #storeName name="storeName" id="storeName" placeholder="Ex. KFC Plaza Singapura" maxlength="100" ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" matInput formControlName="storeName"/>
+        <mat-hint align="end">{{storeName.value?.length || 0}}/100</mat-hint>
+        <mat-error>You must enter a name</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" hintLabel="Max 20 characters" style="width: 100%;">
+        <mat-label>Unit-Number</mat-label>
+        <input type="text" #unitNumber name="unitNumber" id="unitNumber" placeholder="Ex. #03-01" maxlength="20" matInput formControlName="unitNumber">
+        <mat-hint align="end">{{unitNumber.value?.length || 0}}/20</mat-hint>
+        <mat-error>Please enter the unit number of your store</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" hintLabel="Max 20 characters" style="width: 100% ;">
+        <mat-label>Phone</mat-label>
+        <input type="tel" name="phoneNumber" id="phoneNumber" placeholder="91234567" maxlength="20" matInput formControlName="phoneNumber">
+        <mat-error>Please enter a mobile number</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" style="width: 100% ;">
+        <mat-label>Picture of your shop</mat-label>
+        <ngx-mat-file-input formControlName="outletPic">
+            <mat-icon ngxMatFileInputIcon>folder</mat-icon>
+        </ngx-mat-file-input>
+        <mat-error>Upload a picture of You</mat-error>
+    </mat-form-field>
+
+
+    <button type="submit" mat-raised-button color="primary" [disabled]="addOutletForm.invalid" style="margin-top:10px; width:70%; left: 15%;" >
+      Save
+    </button>
+
+</form>
+    </div>
+<div class="absolute w-full bottom-0" style="margin-left: 100px;">
+    <footer class="block py-4">
+      <div class="container mx-auto px-4">
+        <hr class="mb-4 border-b-1 border-blueGray-200" />
+        <div class="flex flex-wrap items-center md:justify-between justify-center">
+          <div class="w-full md:w-4/12 px-4">
+            <div class="text-sm text-blueGray-500 font-semibold py-1">
+              Copyright © {{date}}
+              <a href="https://github.com/Alejandro-houlu"
+                class="text-blueGray-500 hover:text-blueGray-700 text-sm font-semibold py-1">
+                Alejandro
+              </a>
+            </div>
+          </div>
+          <div class="w-full md:w-8/12 px-4">
+            <ul class="flex flex-wrap list-none md:justify-end  justify-center">
+              <li>
+                <a href="https://github.com/Alejandro-houlu"
+                  class="text-blueGray-600 hover:text-blueGray-800 text-sm font-semibold block py-1 px-3">
+                  Alejandro
+                </a>
+              </li>
+              <li>
+                <a href="javascript:void(0)"
+                  class="text-blueGray-600 hover:text-blueGray-800 text-sm font-semibold block py-1 px-3">
+                  About Us
+                </a>
+              </li>
+              <li>
+                <a href="javascript:void(0)"
+                  class="text-blueGray-600 hover:text-blueGray-800 text-sm font-semibold block py-1 px-3">
+                  Blog
+                </a>
+              </li>
+              <li>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+    </div>

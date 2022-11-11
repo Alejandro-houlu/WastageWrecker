@@ -1,4 +1,59 @@
-<app-navbar></app-navbar>
+<nav
+  class="top-0 absolute z-50 w-full flex flex-wrap items-center justify-between px-2 py-3 "
+>
+  <div class="container px-4 mx-auto flex flex-wrap items-center justify-between">
+    <div class="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
+      <a class="text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase text-white"
+        href=#
+        >Wastage Wrecker</a>
+    </div>
+    <div
+      class="lg:flex flex-grow items-center bg-white lg:bg-transparent lg:shadow-none"
+    >
+      <ul class="flex flex-col lg:flex-row list-none mr-auto">
+        <li class="flex items-center">
+          <a
+            class="lg:text-white lg:hover:text-gray-300 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+            [routerLink]="['/signup']">
+            <i class="lg:text-white far fa-file-alt text-lg leading-lg mr-2"></i>
+            Sign up now!</a>
+        </li>
+      </ul>
+      <ul class="flex flex-col lg:flex-row list-none lg:ml-auto">
+        <li class="flex items-center">
+          <a class="lg:text-white lg:hover:text-gray-300 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+            href="#">
+
+            <i class="lg:text-white fab fa-facebook text-lg leading-lg "></i>
+        </a>
+        </li>
+
+        <li class="flex items-center">
+          <a class="lg:text-white lg:hover:text-gray-300 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+            href="#">
+            <i class="lg:text-white fab fa-twitter text-lg leading-lg "></i>
+            </a>
+        </li>
+
+        <li class="flex items-center">
+          <a class="lg:text-white lg:hover:text-gray-300 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+            href="#">
+            <i class="lg:text-white fab fa-github text-lg leading-lg "></i>
+        </a>
+
+        </li>
+        <li class="flex items-center">
+          <button [routerLink]="['/login']"
+            class="bg-white text-gray-800 active:bg-gray-100 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3"
+            type="button"
+            style="transition: all 0.15s ease 0s;">
+            <i class="fas fa-sign-in-alt"></i> Log In
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
 <main>
     <div
       class="relative pt-16 pb-32 flex content-center items-center justify-center"
@@ -48,7 +103,7 @@
                 <div class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-red-400">
                   <i class="fas fa-1"></i>
                 </div>
-                <h6 class="text-xl font-semibold">Sign up</h6>
+                <h1 class="text-xl font-semibold">Sign up</h1>
                 <p class="mt-2 mb-4 text-gray-600">
                   Begin your journey to minimize food wastage!<br>
                   (Espspecially during the night time)
@@ -62,7 +117,7 @@
                 <div class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-blue-400">
                   <i class="fas fa-2"></i>
                 </div>
-                <h6 class="text-xl font-semibold">Browse</h6>
+                <h1 class="text-xl font-semibold">Browse</h1>
                 <p class="mt-2 mb-4 text-gray-600">
                   Look for promotions near you!<br>
                   (Or your favourite restaurants)
@@ -76,7 +131,7 @@
                 <div class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-green-400">
                   <i class="fas fa-3"></i>
                 </div>
-                <h6 class="text-xl font-semibold">Get directions</h6>
+                <h1 class="text-xl font-semibold">Get directions</h1>
                 <p class="mt-2 mb-4 text-gray-600">
                   Grab that promotion while it lasts!<br>
                   Follow your favourite restaurants and never miss another promotion!
