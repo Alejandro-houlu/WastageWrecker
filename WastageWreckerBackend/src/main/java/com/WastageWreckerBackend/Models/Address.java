@@ -32,8 +32,23 @@ public class Address {
 @ManyToOne
    private User user;
    
-   @OneToMany(mappedBy = "address")
-   private Collection<PromotionalList> promotionalLists;
+
+@OneToMany(mappedBy = "address")
+   private Collection<Promotion> promotionalLists;
+
+@OneToMany(mappedBy = "address")
+    private Collection<LocationImages> locationImages;
+
+@OneToMany(mappedBy="subscribed")
+    private Collection<Subscription> subscriptions;
+
+public Collection<LocationImages> getLocationImages() {
+    return locationImages;
+}
+    
+public void setLocationImages(Collection<LocationImages> locationImages) {
+    this.locationImages = locationImages;
+}
 
 public Long getAddressId() {
     return addressId;
@@ -83,11 +98,11 @@ public void setUser(User user) {
     this.user = user;
 }
 
-public Collection<PromotionalList> getPromotionalLists() {
+public Collection<Promotion> getPromotionalLists() {
     return promotionalLists;
 }
 
-public void setPromotionalLists(Collection<PromotionalList> promotionalLists) {
+public void setPromotionalLists(Collection<Promotion> promotionalLists) {
     this.promotionalLists = promotionalLists;
 }
 
@@ -98,6 +113,8 @@ public String getAddressName() {
 public void setAddressName(String addressName) {
     this.addressName = addressName;
 }
+
+
 
 @Override
 public String toString() {
@@ -145,6 +162,14 @@ public static Optional<Address> createModel(String resp){
     }
     
     return Optional.of(address);
+}
+
+public Collection<Subscription> getSubscriptions() {
+    return subscriptions;
+}
+
+public void setSubscriptions(Collection<Subscription> subscriptions) {
+    this.subscriptions = subscriptions;
 }
 
 

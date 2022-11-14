@@ -24,8 +24,10 @@ import org.springframework.web.multipart.MultipartFile;
 import com.WastageWreckerBackend.Config.MyUserDetails;
 import com.WastageWreckerBackend.Models.Address;
 import com.WastageWreckerBackend.Models.LocationImages;
+import com.WastageWreckerBackend.Models.Promotion;
 import com.WastageWreckerBackend.Models.User;
 import com.WastageWreckerBackend.Services.AddressInterface;
+import com.WastageWreckerBackend.Services.PromotionInterface;
 
 import jakarta.json.Json;
 import jakarta.json.JsonArray;
@@ -40,6 +42,9 @@ public class AddressRestController {
 
     @Autowired
     AddressInterface addressSvc;
+
+    @Autowired
+    PromotionInterface promotionSvc;
 
     @PostMapping("/saveAddress")
     @Transactional
@@ -114,7 +119,7 @@ public class AddressRestController {
         }
     
     @GetMapping("/getAddresses")
-    public ResponseEntity<String> getAllAddress(@AuthenticationPrincipal MyUserDetails userDetails){
+    public ResponseEntity<String> getAllAddresses(@AuthenticationPrincipal MyUserDetails userDetails){
 
         User user = userDetails.getUser();
         List<Address> addresses = addressSvc.getAllAddressByUser(user);
@@ -126,6 +131,8 @@ public class AddressRestController {
         for(Address address: addresses){
             List<LocationImages> locationImages = addressSvc.getLocationImagesByAddress(address);
 
+            List<Promotion> promos = promotionSvc.getAllPromotionsByAddressId(address.getAddressId().toString());
+
             JsonObject jsonObj = Json.createObjectBuilder()
                 .add("addressId", address.getAddressId())
                 .add("placeId", address.getPlaceId())
@@ -133,6 +140,7 @@ public class AddressRestController {
                 .add("storeName", address.getAddressName())
                 .add("unitNumber", address.getUnitNumber())
                 .add("outletPicUrl",locationImages.get(0).getImageUrl())
+                .add("numberOfPromos", promos.size())
                 .build();
 
             jsonObjList.add(jsonObj);
@@ -157,6 +165,7 @@ public class AddressRestController {
             .add("postalCode", address.getPostalCode())
             .add("storeName", address.getAddressName())
             .add("unitNumber", address.getUnitNumber())
+            .add("phoneNumber", address.getPhoneNumber())
             .add("outletPicUrl",locationImages.get(0).getImageUrl())
             .build();
         

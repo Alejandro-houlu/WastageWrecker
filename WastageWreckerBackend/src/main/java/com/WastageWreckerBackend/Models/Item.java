@@ -12,12 +12,9 @@ public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long itemId;
-    
+    private Float price;
     private String itemName;
     private String itemPicUrl;
-
-    @ManyToOne
-    private PromotionalList promotionalList;
 
     public Long getItemId() {
         return itemId;
@@ -43,19 +40,21 @@ public class Item {
         this.itemPicUrl = itemPicUrl;
     }
 
-    public PromotionalList getPromotionalList() {
-        return promotionalList;
+    public Float getPrice() {
+        return price;
     }
 
-    public void setPromotionalList(PromotionalList promotionalList) {
-        this.promotionalList = promotionalList;
+    public void setPrice(Float price) {
+        this.price = price;
     }
 
     @Override
     public String toString() {
-        return "Item [itemId=" + itemId + ", itemName=" + itemName + ", itemPicUrl=" + itemPicUrl + ", promotionalList="
-                + promotionalList + "]";
+        return "Item [itemId=" + itemId + ", price=" + price + ", itemName=" + itemName + ", itemPicUrl=" + itemPicUrl
+                + "]";
     }
+
+
 
     
 }

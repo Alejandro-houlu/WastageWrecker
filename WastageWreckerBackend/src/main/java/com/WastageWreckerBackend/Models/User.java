@@ -37,7 +37,7 @@ public class User {
     private Collection<Subscription> subscriptions;
 
     @OneToMany(mappedBy = "owner")
-    private Collection<PromotionalList> promotionLists;
+    private Collection<Promotion> promotionLists;
 
     public Long getUserId() {
         return userId;
@@ -119,11 +119,11 @@ public class User {
         this.subscriptions = subscriptions;
     }
 
-    public Collection<PromotionalList> getPromotionLists() {
+    public Collection<Promotion> getPromotionLists() {
         return promotionLists;
     }
 
-    public void setPromotionLists(Collection<PromotionalList> promotionLists) {
+    public void setPromotionLists(Collection<Promotion> promotionLists) {
         this.promotionLists = promotionLists;
     }
 

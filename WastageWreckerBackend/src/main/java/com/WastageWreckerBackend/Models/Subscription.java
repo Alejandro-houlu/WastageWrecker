@@ -16,11 +16,14 @@ public class Subscription {
     private Long subId;
 
     private Timestamp timeSubscribed;
-    private Long ownerId;
 
     @ManyToOne
     private User subscriber;
 
+    @ManyToOne
+    private Address subscribed;
+
+    
     public Long getSubId() {
         return subId;
     }
@@ -37,13 +40,6 @@ public class Subscription {
         this.timeSubscribed = timeSubscribed;
     }
 
-    public Long getOwnerId() {
-        return ownerId;
-    }
-
-    public void setOwnerId(Long ownerId) {
-        this.ownerId = ownerId;
-    }
 
     public User getUser() {
         return subscriber;
@@ -52,11 +48,29 @@ public class Subscription {
     public void setUser(User user) {
         this.subscriber = user;
     }
+    
+    public User getSubscriber() {
+        return subscriber;
+    }
+
+    public void setSubscriber(User subscriber) {
+        this.subscriber = subscriber;
+    }
+
+    public Address getSubscribed() {
+        return subscribed;
+    }
+
+    public void setSubscribed(Address subscribed) {
+        this.subscribed = subscribed;
+    }
 
     @Override
     public String toString() {
-        return "Subscription [subId=" + subId + ", timeSubscribed=" + timeSubscribed + ", ownerId=" + ownerId
-                + ", subscriber=" + subscriber + "]";
+        return "Subscription [subId=" + subId + ", timeSubscribed=" + timeSubscribed + 
+                 ", subscriber=" + subscriber + ", subscribed=" + subscribed + "]";
     }
+
+
     
 }

@@ -1,5 +1,5 @@
 package com.WastageWreckerBackend.Models;
 
 public enum Status {
-    ACTIVE, EXPIRED, SOLD_OUT
+    ACTIVE, EXPIRED, SOLD_OUT,INACTIVE
 }
