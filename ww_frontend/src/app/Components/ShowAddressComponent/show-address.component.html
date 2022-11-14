@@ -1,0 +1,18 @@
+<img src={{data.outletPicUrl}}>
+<h1>{{data.storeName}}</h1>
+<h2>{{data.postalCode}}</h2>
+<h2>{{data.unitNumber}}</h2>
+<h3>Tel: {{data.phoneNumber}}</h3>
+
+
+<div *ngIf="isSubbed.isSubbed === 'false'">
+    <button mat-raised-button color="primary" type="button" style="margin-left: 150px;" class="Discard-btn" (click)="followClicked()">Follow</button>
+    <button mat-raised-button color="primary" style="float: right; margin-right: 150px;" type="button" class="Discard-btn" (click)="closeDialog()">Close</button>
+</div>
+
+<div *ngIf="isSubbed.isSubbed === 'true'">
+    <button mat-raised-button color="warn" type="button" style="margin-left: 140px;" class="Discard-btn" (click)="unFollowClicked()">Unfollow</button>
+    <button mat-raised-button color="primary" style="float: right; margin-right: 140px;" type="button" class="Discard-btn" (click)="closeDialog()">Close</button> 
+</div>
+        
+

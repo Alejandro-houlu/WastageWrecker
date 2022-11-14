@@ -27,17 +27,26 @@ import { AddOutletComponent } from './Components/AddOutletComponent/add-outlet.c
 import { OutletService } from './Services/OutletService';
 import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 import { OutletProfileComponent } from './Components/OutletProfileComponent/outlet-profile.component';
-
+import { AddPromotionComponent } from './Components/AddPromotionComponent/add-promotion.component';
+import { PromotionComponent } from './Components/PromotionComponent/promotion.component';
+import { PromotionService } from './Services/PromotionService';
+import { SearchService } from './Services/SearchService';
+import { SearchResultComponent } from './Components/SearchResultComponent/search-result.component';
+import { GoogleMapsModule } from '@angular/google-maps';
+import { ShowAddressComponent } from './Components/ShowAddressComponent/show-address.component';
+import { SubscriptionService } from './Services/SubscriptionService';
 
 const appRoutes: Routes = [
   {path: '', component:HomeComponent},
   {path: 'home', component: HomeComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'signup', component: SignupComponent},
-  {path: 'profile/:userId',component:ProfileComponent, canActivate:[AuthenticationGuard]},
+  {path: 'signup/:role', component: SignupComponent},
+  {path: 'profile/:userId',component:ProfileComponent, canActivate:[AuthenticationGuard], data:{role:'OWNER'}},
   {path: 'outlet',component:OutletComponent, canActivate:[AuthenticationGuard]},
   {path: 'addOutlet/:userId', component:AddOutletComponent, canActivate:[AuthenticationGuard]},
   {path: 'outletProfile/:addressId', component:OutletProfileComponent, canActivate:[AuthenticationGuard]},
+  {path: 'promotion',component:PromotionComponent, canActivate:[AuthenticationGuard]},
+  {path: 'searchResult',component: SearchResultComponent, canActivate:[AuthenticationGuard]},
   {path:"**", redirectTo:'/', pathMatch:'full'},
 
 ]
@@ -57,11 +66,16 @@ const appRoutes: Routes = [
     OutletComponent,
     AddOutletComponent,
     OutletProfileComponent,
+    AddPromotionComponent,
+    PromotionComponent,
+    SearchResultComponent,
+    ShowAddressComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     GooglePlaceModule,
+    GoogleMapsModule,
     MaterialModule,
     ReactiveFormsModule,
     HttpClientModule,
@@ -71,7 +85,8 @@ const appRoutes: Routes = [
     serverLogLevel: NgxLoggerLevel.ERROR}),
     RouterModule.forRoot(appRoutes,{useHash: true})
   ],
-  providers: [LoginService,ProfileService,SignUpService,OutletService, {provide:HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi:true}],
+  providers: [LoginService,ProfileService,SignUpService,OutletService, PromotionService,
+    SearchService,SubscriptionService, {provide:HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

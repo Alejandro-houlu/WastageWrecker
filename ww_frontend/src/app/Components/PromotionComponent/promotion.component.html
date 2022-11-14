@@ -16,13 +16,13 @@
             Dashboard</a>
         </li>
         <li class="items-center">
-          <a class="text-pink-500 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
+          <a class="text-blueGray-700 hover:text-pink-600 text-xs uppercase py-3 font-bold block"
             [routerLink]="['/outlet']">
             <i class="fas fa-shop text-blueGray-400 mr-2 text-sm"></i>
             Outlets</a>
         </li>
         <li class="items-center">
-          <a class="text-blueGray-700 hover:text-pink-600 text-xs uppercase py-3 font-bold block"
+          <a class="text-pink-500 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
             [routerLink]="['/promotion']">
             <i class="fas fa-tags text-blueGray-400 mr-2 text-sm"></i>
             Promotions</a>
@@ -44,88 +44,67 @@
         <div class="px-4 md:px-100 mx-auto w-full">
             <div>
         <!-- Add outlet button -->
-        <div class="flex flex-wrap hover:bg-red-500">
-          <div class="w-full px-6" (click)="addOutlet()"  style="cursor: pointer;">
-            <div class="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg">
-              <div class="flex-auto p-4 w-auto">
                 <div class="flex flex-wrap">
-                  <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
-                    <h5 class="text-blueGray-400 uppercase font-bold text-xs">
-                      Outlets
-                    </h5>
-                    <span class="font-semibold text-xl text-blueGray-700">
-                      Add an outlet
-                    </span>
-                  </div>
-                  <div class="relative w-auto pl-4 flex-initial">
-                    <div class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full bg-red-500">
-                      <i class="fas fa-shop"></i>
+                    <div class="w-full px-6">
+                        <div class="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg">
+                        <div class="flex-auto p-4 w-auto">
+                            <div class="flex flex-wrap">
+                            <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
+                                <h5 class="text-blueGray-400 uppercase font-bold text-xs">
+                                Promotions
+                                </h5>
+                                <span class="font-semibold text-xl text-blueGray-700">
+                                All your promotions
+                                </span>
+                            </div>
+                            <div class="relative w-auto pl-4 flex-initial">
+                                <div class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full bg-red-500">
+                                <i class="fas fa-tags"></i>
+                                </div>
+                            </div>
+                            </div>
+                            <p class="text-sm text-blueGray-400 mt-4">
+                            <span class="text-emerald-500 mr-2">
+                                <!-- {{ outlets.length }} -->
+                            </span>
+                            <span class="whitespace-nowrap">
+                                No. of promotions 
+                            </span>
+                            </p>
+                        </div>
+                        </div>
                     </div>
-                  </div>
                 </div>
-                  <p class="text-sm text-blueGray-400 mt-4">
-                  <span class="text-emerald-500 mr-2">
-                    {{ outlets.length }}
-                  </span>
-                  <span class="whitespace-nowrap">
-                    No. of outlets
-                  </span>
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
         </div>
     </div>
 </div>
-</div>
 
-<!-- List of outlets -->
-<div class="relative md:ml-64 bg-blueGray-100 pt-6 pl-4 pb-32" >
-        <div class="flex flex-wrap">
-          <div class="w-full lg:w-6/12 xl:w-3/12 px-4 pt-12" style="cursor: pointer;"*ngFor="let outlet of outlets; index as i" (click)="viewOutletProfile(outlet.addressId)">
-            <div class="relative flex flex-col min-w-0 break-words bg-white hover:bg-indigo-500 rounded mb-6 xl:mb-0 shadow-lg">
-              <div class="flex-auto p-4">
-                <div class="flex flex-wrap">
-                  <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
-                    <h5 class="text-blueGray-400 uppercase font-bold text-xs">
-                      {{ outlet.storeName + " " + outlet.unitNumber }}
-                    </h5>
+          <div class="mt-10 py-10 border-t border-gray-300 text-center" style="padding-left: 50px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;">
 
-                    <span class="font-semibold text-xl text-emerald-500" *ngIf="time < 22 && time > 9; else close ">
-                      OPEN
-                    </span>
-
-                    <ng-template #close>
-                    <span class="font-semibold text-xl text-pink-600">
-                      CLOSE
-                    </span>
-                    </ng-template>
-
-                  </div>
-                  <div class="relative w-auto pl-4 flex-initial">
-                    <div class="text-white p-1 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full bg-red-500">
-                      <img
-                      class="rounded-full"
-                       src ={{outlet.outletPicUrl}}>
-                    </div>
-                  </div>
+            <div class="max-w-sm rounded overflow-hidden shadow-lg bg-blueGray-100 hover:bg-orange-500" style="cursor: pointer;"*ngFor="let promo of promotionListByOwner; index as i"
+                (click)="promoClicked(promo, promo.addressId)">
+                <div class="px-6 py-4">
+                    <div class="font-bold text-xl mb-2">{{ promo.storeName }}</div>
                 </div>
-                  <p class="text-sm text-blueGray-400 mt-4">
-                  <span class="text-pink-500 mr-2">
-                    <i class="fas fa-tags"></i> 
-                    {{outlet.numberOfPromos}}
-                  </span>
-                  <span class="whitespace-nowrap">
-                    Active promotions
-                  </span>
-                </p>
-              </div>
+                <img class="w-full" style="height: 50%;" src="{{ promo.promoPicUrl }}">
+                <div class="px-6 py-4" style="height: 200px;">
+                    <div class="font-bold text-xl mb-2">{{ promo.itemName }} @ {{ promo.price }}</div>
+                    <p class="text-gray-700 text-base">
+                    {{ promo.description }}
+                    </p>
+                    <p class="text-gray-700 text-base" *ngIf="promo.startDate !!= promo.endDate">
+                    From: <span style="font-weight:bold ;">{{ promo.startDate }}</span> to <span style="font-weight:bold">{{promo.endDate}}</span>
+                    </p>
+                    <p class="text-gray-700 text-base" *ngIf="promo.startDate === promo.endDate">
+                    From: <span style="font-weight:bold ;">{{ promo.startTime }}</span> to <span style="font-weight:bold">{{promo.endTime}}</span> on 
+                    <span style="font-weight:bold">{{ promo.startDate }}</span>
+                    </p>
+                </div>
             </div>
           </div>
         </div>
-    </div>
-<div class="absolute w-full bottom-0" style="margin-left: 100px;">
+
+<div class="relative w-full bottom-0" style="margin-left: 100px; padding-top: 200px;">
     <footer class="block py-4">
       <div class="container mx-auto px-4">
         <hr class="mb-4 border-b-1 border-blueGray-200" />

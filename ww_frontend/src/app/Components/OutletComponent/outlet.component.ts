@@ -19,6 +19,7 @@ export class OutletComponent implements OnInit {
   time = new Date().getHours();
 
 
+
   constructor(private profileSvc:ProfileService, private logger: NGXLogger,
     private router: Router, private outletSvc: OutletService) { }
 
@@ -37,7 +38,7 @@ export class OutletComponent implements OnInit {
           this.logger.info(res)
           this.outlets = res
         })
-      console.log(this.time)
+
   }
 
   addOutlet(){

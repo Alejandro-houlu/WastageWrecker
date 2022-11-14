@@ -14,7 +14,7 @@
         <li class="flex items-center">
           <a
             class="lg:text-white lg:hover:text-gray-300 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-            [routerLink]="['/signup']">
+            [routerLink]="['/signup','customer']">
             <i class="lg:text-white far fa-file-alt text-lg leading-lg mr-2"></i>
             Sign up now!</a>
         </li>
@@ -161,7 +161,9 @@
             <button
                   class="bg-pink-300 active:bg-gray-100 text-gray-800 font-normal px-4 py-2 rounded outline-none focus:outline-none mr-2 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-l"
                   type="button"
-                  style="transition: all 0.15s ease 0s;">Sign up as Store Owner
+                  style="transition: all 0.15s ease 0s;"
+                  [routerLink]="['/signup','owner']"
+                  >Sign up as Store Owner
             </button>
           </div>
           <div class="w-full md:w-4/12 px-4 mr-auto ml-auto">
@@ -260,7 +262,8 @@
                         <button
                             class="bg-pink-300 active:bg-gray-100 text-gray-800 font-normal px-4 py-2 rounded outline-none focus:outline-none mr-2 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-l"
                             type="button"
-                            style="transition: all 0.15s ease 0s;">Sign up now!
+                            style="transition: all 0.15s ease 0s;"
+                            [routerLink]="['/signup','customer']">Sign up now!
                     </button>
                     </div>
                 </li>

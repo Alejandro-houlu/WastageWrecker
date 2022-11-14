@@ -1,0 +1,78 @@
+
+<div>
+    <h2>Add a promotion</h2>
+
+    <form [formGroup]="addPromotionForm" (ngSubmit)="processAddPromotionForm()">
+            <mat-form-field appearance="fill" style="width:100%;">
+              <input type="text" matInput placeholder="Ex. Spicy burger meal" formControlName="itemName">
+              <mat-error>
+                Please enter the item name
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" style="width:100%;">
+              <input type="text" matInput placeholder="Ex. 50% off!" formControlName="description">
+              <mat-error>
+                Please enter description
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" style="width: 100%;">
+              <input type="number" min="1" step="0.1" matInput placeholder="Price" formControlName="price">
+              <mat-error>
+                Please a promotional price
+              </mat-error>
+            </mat-form-field>
+
+
+            <mat-form-field appearance="fill" style="width:100%">
+            <input matInput [ngxMatDatetimePicker]="picker" placeholder="Choose a date" formControlName="startDate"
+                [disabled]="disabled">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <ngx-mat-datetime-picker #picker [showSpinners]="showSpinners" [showSeconds]="showSeconds" [stepHour]="stepHour"
+                [stepMinute]="stepMinute" [touchUi]="touchUi" [color]="color"
+                [enableMeridian]="enableMeridian" >
+                <ng-template>
+                <span>OK</span>
+                </ng-template>
+            </ngx-mat-datetime-picker>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" style="width:100%">
+            <input matInput [ngxMatDatetimePicker]="picker1" placeholder="Choose a date" formControlName="endDate"
+                [disabled]="disabled">
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <ngx-mat-datetime-picker #picker1 [showSpinners]="showSpinners" [showSeconds]="showSeconds" [stepHour]="stepHour"
+                [stepMinute]="stepMinute" [touchUi]="touchUi" [color]="color"
+                [enableMeridian]="enableMeridian" >
+                <ng-template>
+                <span>OK</span>
+                </ng-template>
+            </ngx-mat-datetime-picker>
+            </mat-form-field>
+
+
+        <mat-form-field appearance="outline" style="width: 100% ;">
+            <mat-label>Picture</mat-label>
+            <ngx-mat-file-input formControlName="promoPic">
+                <mat-icon ngxMatFileInputIcon>folder</mat-icon>
+            </ngx-mat-file-input>
+            <mat-error>Upload a picture of You</mat-error>
+        </mat-form-field>
+
+
+         <mat-radio-group formControlName="status">
+            <div style="color:grey;">Status</div>
+              <mat-radio-button color="primary" style="padding:4px 4px 0px 0px;" value="ACTIVE">Active</mat-radio-button>
+              <mat-radio-button  color="primary" style="padding:4px 0px 0px 24px;" value="INACTIVE">Inactive</mat-radio-button>
+        </mat-radio-group>
+
+
+      <div style="padding-top:20px ;">
+        <button mat-raised-button type="submit" color="primary" class="Update-btn" [disabled]="addPromotionForm.invalid" (click)="processAddPromotionForm()">Save</button>
+        <button mat-raised-button type="button" class="Discard-btn" style="float:right" (click)="closeDialog()">Cancel</button>
+      </div>
+
+
+    </form>
+</div>

@@ -7,7 +7,7 @@
     <!-- Brand -->
     <a
       class="text-white text-sm uppercase hidden lg:inline-block font-semibold"
-      href="https://www.creative-tim.com/learning-lab/tailwind-starter-kit#/dashboard"
+      [routerLink]="['/profile', user.userId]"
       >Wastage Wrecker | Welcome back {{ user.username }}</a
     >
     <!-- Form -->

@@ -8,7 +8,7 @@ import { User } from "../Models/User";
 export class SignUpService{
     constructor(private http:HttpClient, private logger: NGXLogger){}
 
-    saveCustomer(user:User):Promise<User>{
+    saveUser(user:User):Promise<User>{
 
         const formData = new FormData()
 

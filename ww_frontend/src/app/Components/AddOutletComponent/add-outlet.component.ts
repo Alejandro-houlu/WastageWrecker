@@ -61,9 +61,10 @@ export class AddOutletComponent implements OnInit {
     this.outLetSvc.saveOutlet(outletAddressDTO)
       .then(res=>{
         this.logger.info(res)
+        this.router.navigate(['/outlet'])
       }).catch(error=>{this.logger.info(error)})
     
-    this.router.navigate(['/outlet'])
+
 
   }
 
