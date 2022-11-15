@@ -1,0 +1,25 @@
+name: Deploy to Heroku
+on:
+  push:
+    tags:
+      - 'v*'
+      - '!v*-alpha'
+jobs: 
+  Deploy_to_heroku:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout src
+      uses: actions/checkout@v2
+      working-directory: WastageWreckerBackend
+    - name: Deploy
+      uses: akhileshns/heroku-deploy@v3.12.12
+      with:
+        heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+        heroku_app_name: wastage-wrecker
+        heroku_email: ${{ secrets.email }}
+        branch: ${{ github.ref_name }}
+      working-directory: WastageWreckerBackend
+      env:
+        SPRING_DATASOURCE_URL: ${{ secrets.SPRING_DATASOURCE_URL }}
+        SPRING_DATASOURCE_USERNAME: ${{ secrets.SPRING_DATASOURCE_USERNAME }}
+        SPRING_DATASOURCE_PASSWORD: ${{ secrets.SPRING_DATASOURCE_PASSWORD }}
