@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import com.WastageWreckerBackend.Services.UserDetailsServiceImplementation;
@@ -19,7 +20,6 @@ import com.WastageWreckerBackend.Session.SessionFilter;
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
     
     @Autowired 
@@ -62,11 +62,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-            .antMatchers("/images/**","/css/**","/api/login/**","/api/signup/**","/js/**","/webjars/**").permitAll()
-            .antMatchers("/home").permitAll()
-            .anyRequest()
-            .authenticated()
+        http.authorizeRequests().anyRequest().permitAll()
+            // .antMatchers("/images/**","/css/**","/api/login/**","/api/signup/**","/js/**","/webjars/**").permitAll()
+            // .antMatchers("/home").permitAll()
+            // .anyRequest()
+            // .authenticated()
             .and()
             .addFilterBefore(sessionFilter, UsernamePasswordAuthenticationFilter.class)
             .formLogin()
@@ -78,5 +78,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
             .logout().logoutUrl("/api/logout")
             .invalidateHttpSession(true)
             .deleteCookies("JSESSIONID").permitAll();
+        
     }
+
 }
