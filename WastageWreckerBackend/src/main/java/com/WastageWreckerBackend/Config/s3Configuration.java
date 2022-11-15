@@ -29,7 +29,7 @@ public class s3Configuration {
 
     @Value("${ACCESS_KEY}")
     private String accessKey;
-    
+
 
     @Bean
     AmazonS3 createS3Client(){
