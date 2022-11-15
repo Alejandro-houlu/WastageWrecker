@@ -34,4 +34,10 @@ export class SubscriptionService{
         )
     }
 
+    getAllOwnerSubs():Promise<SubscriptionDTO>{
+        return firstValueFrom(
+            this.http.get<SubscriptionDTO>('/api/getAllOwnerSubs')
+        )
+    }
+
 }

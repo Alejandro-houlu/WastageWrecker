@@ -11,10 +11,10 @@ import { PromotionDTO } from "../Models/PromotionDTO";
 export class PromotionService{
     constructor(private logger: NGXLogger, private http:HttpClient){}
 
-    getAllPromotionsAndAddressByUser():Promise<OutletAndPromoDTO>{
+    getAllPromotionsAndAddressByUser():Promise<OutletAndPromoDTO[]>{
 
         return firstValueFrom(
-            this.http.get<OutletAndPromoDTO>('/api/promotion/owner/all')
+            this.http.get<OutletAndPromoDTO[]>('/api/promotion/owner/all')
         )
     }
 

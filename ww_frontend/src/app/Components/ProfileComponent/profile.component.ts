@@ -12,6 +12,8 @@ import { OutletAndPromoDTO } from 'src/app/Models/OutletAndPromoDTO';
 import { SubscriptionService } from 'src/app/Services/SubscriptionService';
 import { ShowAddressComponent } from '../ShowAddressComponent/show-address.component';
 import { MatDialog } from '@angular/material/dialog';
+import { SubscriptionDTO } from 'src/app/Models/SubscriptionDTO';
+import { PromotionService } from 'src/app/Services/PromotionService';
 
 @Component({
   selector: 'app-profile',
@@ -24,19 +26,21 @@ export class ProfileComponent implements OnInit {
   user!:User
   outlets!:OutletAddressDTO[]
   promotions!: PromotionDTO[]
+  outletAndActivePromos!: OutletAndPromoDTO[]
+  outletAndAllPromos!: OutletAndPromoDTO[]
   searchForm!: FormGroup
+  subDetails!: SubscriptionDTO
 
   constructor(private activatedRoute:ActivatedRoute,
     private profileSvc:ProfileService,
     private logger:NGXLogger,
     private router:Router, private outletSvc: OutletService,
     private formBuilder: FormBuilder, private searchSvc:SearchService,
-    private subSvc: SubscriptionService,private dialog: MatDialog) { }
+    private subSvc: SubscriptionService,private dialog: MatDialog,
+    private promoSvc:PromotionService) { }
 
   date = new Date().getFullYear();
   outletAndPromoDTOList!: OutletAndPromoDTO[]
-
-    // CUSTOMER METHODS
 
     options: any = {
         types:['establishment'],
@@ -64,6 +68,20 @@ export class ProfileComponent implements OnInit {
           this.outlets = res
         }).catch(error=>this.logger.info(error))
 
+    this.subSvc.getAllOwnerSubs()
+        .then(res=>{
+          this.logger.info(res)
+          this.subDetails = res
+        }).catch(error=>this.logger.info(error))
+
+    this.promoSvc.getAllPromotionsAndAddressByUser()
+        .then(res=>{
+          this.logger.info(res)
+          this.outletAndActivePromos = res.filter(v=>v.status==='ACTIVE')
+          this.outletAndAllPromos = res
+        })
+    
+
     this.searchForm = this.formBuilder.group({
         search: this.formBuilder.control<string>('', [Validators.required])
     })
@@ -74,7 +92,7 @@ export class ProfileComponent implements OnInit {
         this.logger.info(res)
         this.outletAndPromoDTOList = res
       })
-
+  
     
   } 
 

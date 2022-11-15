@@ -78,10 +78,13 @@
         </div>
     </div>
 </div>
+          <div style="text-align:center; padding-top: 20px;">
+            <h1>Active</h1>
+          </div>
 
           <div class="mt-10 py-10 border-t border-gray-300 text-center" style="padding-left: 50px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;">
 
-            <div class="max-w-sm rounded overflow-hidden shadow-lg bg-blueGray-100 hover:bg-orange-500" style="cursor: pointer;"*ngFor="let promo of promotionListByOwner; index as i"
+            <div class="max-w-sm rounded overflow-hidden shadow-lg bg-blueGray-100 hover:bg-orange-500" style="cursor: pointer;"*ngFor="let promo of promotionListActiveByOwner; index as i"
                 (click)="promoClicked(promo, promo.addressId)">
                 <div class="px-6 py-4">
                     <div class="font-bold text-xl mb-2">{{ promo.storeName }}</div>
@@ -102,7 +105,34 @@
                 </div>
             </div>
           </div>
+          <div style="text-align:center; border: 2px; padding-top: 20px;">
+              <h1>Inactive</h1>
+          </div>
+             <div class="mt-10 py-10 border-t border-gray-300 text-center" style="padding-left: 50px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;">
+                <div class="max-w-sm rounded overflow-hidden shadow-lg bg-blueGray-100 hover:bg-orange-500" style="cursor: pointer;"*ngFor="let promo of promotionListInactiveByOwner; index as i"
+                (click)="promoClicked(promo, promo.addressId)">
+                <div class="px-6 py-4">
+                    <div class="font-bold text-xl mb-2">{{ promo.storeName }}</div>
+                </div>
+                <img class="w-full" style="height: 50%;" src="{{ promo.promoPicUrl }}">
+                <div class="px-6 py-4" style="height: 200px;">
+                    <div class="font-bold text-xl mb-2">{{ promo.itemName }} @ {{ promo.price }}</div>
+                    <p class="text-gray-700 text-base">
+                    {{ promo.description }}
+                    </p>
+                    <p class="text-gray-700 text-base" *ngIf="promo.startDate !!= promo.endDate">
+                    From: <span style="font-weight:bold ;">{{ promo.startDate }}</span> to <span style="font-weight:bold">{{promo.endDate}}</span>
+                    </p>
+                    <p class="text-gray-700 text-base" *ngIf="promo.startDate === promo.endDate">
+                    From: <span style="font-weight:bold ;">{{ promo.startTime }}</span> to <span style="font-weight:bold">{{promo.endTime}}</span> on 
+                    <span style="font-weight:bold">{{ promo.startDate }}</span>
+                    </p>
+                </div>
+            </div>
+            </div>
         </div>
+ 
+
 
 <div class="relative w-full bottom-0" style="margin-left: 100px; padding-top: 200px;">
     <footer class="block py-4">

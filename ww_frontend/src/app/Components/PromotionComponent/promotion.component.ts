@@ -19,7 +19,8 @@ import { AddPromotionComponent } from '../AddPromotionComponent/add-promotion.co
 export class PromotionComponent implements OnInit {
 
   user!:User
-  promotionListByOwner!:OutletAndPromoDTO
+  promotionListActiveByOwner!:OutletAndPromoDTO[]
+  promotionListInactiveByOwner!:OutletAndPromoDTO[]
   address!: OutletAddressDTO
   date = new Date().getFullYear();
   promotionDTO!: PromotionDTO
@@ -44,7 +45,9 @@ export class PromotionComponent implements OnInit {
     this.promoSvc.getAllPromotionsAndAddressByUser()
         .then(res=>{
           this.logger.info(res)
-          this.promotionListByOwner = res
+          this.promotionListActiveByOwner = res.filter(v=>v.status==='ACTIVE')
+          this.promotionListInactiveByOwner = res.filter(v=>v.status==='INACTIVE')
+
         }).catch(error=>{this.logger.info(error)})
   }
 
