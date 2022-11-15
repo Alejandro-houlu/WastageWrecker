@@ -4,5 +4,9 @@
 
 ## Herokuapp:https://wastage-wrecker.herokuapp.com
 
+### Account for testing: 
+#### username: user123@gmail.com
+#### password: user123
+
 ## Docker image: alejandrohoulu/wastagewrecker:latest
 
