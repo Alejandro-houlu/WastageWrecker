@@ -58,7 +58,6 @@ export class OutletProfileComponent implements OnInit {
           this.logger.info(res)
         }).catch(error=>this.logger.info(error))
 
-        this.reload();
     })
   }
   
@@ -75,14 +74,10 @@ export class OutletProfileComponent implements OnInit {
           this.logger.info(res)
         }).catch(error=>this.logger.info(error))
 
-        this.reload();
     })
 
   }
 
-  reload(){
-    location.reload()
-  }
 
   }
 
