@@ -4,12 +4,12 @@ on:
     tags:
       - 'v*'
       - '!v*-alpha'
+defaults:
+  run:
+    working-directory: ./WastageWreckerBackend
 jobs: 
   Deploy_to_heroku:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./WastageWreckerBackend
     steps:
     - name: Checkout src
       uses: actions/checkout@v2
