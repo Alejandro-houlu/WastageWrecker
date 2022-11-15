@@ -29,12 +29,12 @@ public class s3Configuration {
 
     @Value("${ACCESS_KEY}")
     private String accessKey;
+    
 
     @Bean
     AmazonS3 createS3Client(){
 
-        // final String accessKey = "OL4KWLJ25UVJHMTPHC34";
-        // final String secretKey = "/fUyJLivou2g8lYaBn60Ycn6Sp5n/nmS884jUtipjMw";
+
         logger.log(Level.INFO, "accessKey > " + accessKey);
         logger.log(Level.INFO, "secretKey > " + secretKey);
         
