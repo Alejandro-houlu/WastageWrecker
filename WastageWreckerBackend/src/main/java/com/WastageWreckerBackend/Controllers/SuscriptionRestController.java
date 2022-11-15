@@ -2,6 +2,7 @@ package com.WastageWreckerBackend.Controllers;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -126,6 +127,30 @@ public class SuscriptionRestController {
         jsonObjList.stream().forEach(v -> arrBuilder.add(v));
 
         return ResponseEntity.status(HttpStatus.OK).body(arrBuilder.build().toString());
+
+    }
+
+    @GetMapping("/getAllOwnerSubs")
+    public ResponseEntity<String> getAllOwnerSubs(@AuthenticationPrincipal MyUserDetails userDetails){
+
+        User user = userDetails.getUser();
+        List<Address> outlets = addressSvc.getAllAddressByUser(user);
+        List<Subscription> ownerSubs = new ArrayList<>();
+
+        for(Address address: outlets){
+            
+            Optional<Subscription> optSub = subSvc.getAllOwnerSubs(address.getAddressId());
+            if(optSub.isPresent()){
+                ownerSubs.add(optSub.get());
+            }
+
+        }
+    
+        JsonObject jsonObj = Json.createObjectBuilder()
+            .add("ownerSubs", ownerSubs.size())
+            .build();
+        
+        return ResponseEntity.status(HttpStatus.OK).body(jsonObj.toString());
 
     }
 

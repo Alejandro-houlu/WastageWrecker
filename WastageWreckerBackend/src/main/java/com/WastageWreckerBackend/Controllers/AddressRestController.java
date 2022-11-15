@@ -132,6 +132,9 @@ public class AddressRestController {
             List<LocationImages> locationImages = addressSvc.getLocationImagesByAddress(address);
 
             List<Promotion> promos = promotionSvc.getAllPromotionsByAddressId(address.getAddressId().toString());
+            List<Promotion> activePromotions = new ArrayList<>();
+
+            promos.stream().filter(v->v.getStatus().toString() == "ACTIVE").forEach(v-> activePromotions.add(v));
 
             JsonObject jsonObj = Json.createObjectBuilder()
                 .add("addressId", address.getAddressId())
@@ -140,7 +143,7 @@ public class AddressRestController {
                 .add("storeName", address.getAddressName())
                 .add("unitNumber", address.getUnitNumber())
                 .add("outletPicUrl",locationImages.get(0).getImageUrl())
-                .add("numberOfPromos", promos.size())
+                .add("numberOfPromos", activePromotions.size())
                 .build();
 
             jsonObjList.add(jsonObj);

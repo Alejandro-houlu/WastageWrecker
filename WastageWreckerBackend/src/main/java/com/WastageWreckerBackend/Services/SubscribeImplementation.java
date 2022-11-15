@@ -48,5 +48,11 @@ public class SubscribeImplementation implements SubscribeInterface {
         subsRepo.deleteBySubscriberUserIdAndSubscribedAddressId(userId, addressId);
         
     }
+
+    @Override
+    public Optional<Subscription> getAllOwnerSubs(Long addressId) {
+        
+        return subsRepo.findBySubscribedAddressId(addressId);
+    }
     
 }

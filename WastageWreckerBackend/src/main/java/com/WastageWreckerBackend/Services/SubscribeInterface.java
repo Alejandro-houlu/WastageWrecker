@@ -18,5 +18,7 @@ public interface SubscribeInterface {
     public List<Subscription> getAllUserSubscriptions(Long userId);
 
     public void unsub(Long userId, Long addressId);
+
+    public Optional<Subscription> getAllOwnerSubs(Long addressId);
     
 }
