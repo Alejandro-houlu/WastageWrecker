@@ -1,5 +1,5 @@
 # WastageWrecker
 
-##Herokuapp:https://wastage-wrecker.herokuapp.com
+## Herokuapp:https://wastage-wrecker.herokuapp.com
 
-##Docker image: alejandrohoulu/wastagewrecker:latest
+## Docker image: alejandrohoulu/wastagewrecker:latest
